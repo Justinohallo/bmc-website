@@ -1,11 +1,9 @@
 "use client";
 
-import React from 'react';
 import { Box, Container, Text, Flex, Image, Link, Icon } from '@chakra-ui/react';
 import { FaFacebook, FaGithub } from 'react-icons/fa';
-import { FaXTwitter } from 'react-icons/fa6';
 
-const Footer = () => {
+export const Footer = () => {
     return (
         <Box 
             bg="#F5F5F5" 
@@ -63,20 +61,6 @@ const Footer = () => {
                                 />
                             </Link>
 
-                            {/* X (Twitter)
-                            <Link 
-                                href="https://x.com/btc_merchants" 
-                                isExternal
-                                _hover={{ opacity: 0.7 }}
-                                transition="opacity 0.2s"
-                            >
-                                <Icon 
-                                    as={FaXTwitter} 
-                                    boxSize={{ base: "32px", md: "36px" }}
-                                    color="black"
-                                />
-                            </Link> */}
-
                             {/* GitHub */}
                             <Link 
                                 href="https://github.com/bitcoinmerchants" 
@@ -101,10 +85,4 @@ const Footer = () => {
         </Box>
     );
 };
-
-export default Footer;
-
-
-
-
 

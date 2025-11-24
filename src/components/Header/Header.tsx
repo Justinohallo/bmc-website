@@ -1,7 +1,14 @@
-import React from 'react';
-import { Box, Container, Flex, Image, Text, Link as ChakraLink } from '@chakra-ui/react';
+"use client";
 
-const Header = () => {
+import { Box, Container, Flex, Image, Link as ChakraLink } from '@chakra-ui/react';
+
+export const Header = () => {
+    const handleScrollToTop = () => {
+        if (typeof window !== 'undefined') {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    };
+
     return (
         <Box 
             bg="white"
@@ -24,7 +31,7 @@ const Header = () => {
                 {/* Logo Section */}
                 <Flex align="center">
                     <ChakraLink
-                        onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+                        onClick={handleScrollToTop}
                         cursor="pointer"
                         _hover={{ opacity: 0.8 }}
                     >
@@ -62,6 +69,4 @@ const Header = () => {
         </Box>
     );
 };
-
-export default Header;
 

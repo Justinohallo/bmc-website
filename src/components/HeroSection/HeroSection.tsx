@@ -1,9 +1,23 @@
 "use client";
 
-import React from 'react';
-import { Box, Heading, Text, Button, Flex, Image, Container } from '@chakra-ui/react';
+import { Box, Heading, Text, Button, Flex, Container } from '@chakra-ui/react';
+import { content } from '@/content';
+import { renderRichTextContent } from '@/content/utils/render-content';
 
-const HeroSection = () => {
+export const HeroSection = () => {
+    const heroBlock = content.getContentBlockBySlug('hero-value-proposition');
+    const primaryCTA = heroBlock?.callToActions?.[0] ? content.getCallToActionById(heroBlock.callToActions[0].id) : null;
+    const secondaryCTA = heroBlock?.callToActions?.[1] ? content.getCallToActionById(heroBlock.callToActions[1].id) : null;
+    const heroImage = heroBlock?.media?.[0] ? content.getMediaAssetById(heroBlock.media[0].id) : null;
+
+    const handleExternalAction = (target: string) => {
+        if (typeof window !== 'undefined') {
+            window.open(target, "_blank", "noopener,noreferrer");
+        }
+    };
+
+    if (!heroBlock) return null;
+
     return (
         <Box 
             bg="white" 
@@ -32,7 +46,7 @@ const HeroSection = () => {
                             color="black"
                             maxW={{ base: "100%", xl: "550px" }}
                         >
-                            We help small businesses keep more of their profit.
+                            {heroBlock.title}
                         </Heading>
 
                         <Text 
@@ -42,33 +56,29 @@ const HeroSection = () => {
                             color="black"
                             maxW={{ base: "100%", xl: "460px" }}
                         >
-                            The Bitcoin Merchant Community is a growing global community of small businesses helping one another defeat{' '}
-                            <Text as="span" color="#00A651" fontWeight="700">
-                                3% credit card fees
-                            </Text>{' '}
-                            by accepting bitcoin.
+                            {renderRichTextContent(heroBlock.content)}
                         </Text>
-
-                       
                     </Box>
 
                     {/* Right Side - 3D Image */}
-                    <Box 
-                        flex="1"
-                        display="flex"
-                        justifyContent="center"
-                        alignItems="center"
-                        width={{ base: "280px", sm: "400px", md: "500px", lg: "600px", xl: "800px" }}
-                        maxW="100%"
-                    >
-                        <Box
-                            as="img"
-                            src="/assets/HeroImages/HeroImage.png"
-                            alt="3% melting"
-                            width="100%"
-                            height="auto"
-                        />
-                    </Box>
+                    {heroImage && (
+                        <Box 
+                            flex="1"
+                            display="flex"
+                            justifyContent="center"
+                            alignItems="center"
+                            width={{ base: "280px", sm: "400px", md: "500px", lg: "600px", xl: "800px" }}
+                            maxW="100%"
+                        >
+                            <Box
+                                as="img"
+                                src={heroImage.path}
+                                alt={heroImage.alt}
+                                width="100%"
+                                height="auto"
+                            />
+                        </Box>
+                    )}
                 </Flex>
                  {/* Buttons */}
                  <Flex 
@@ -79,53 +89,55 @@ const HeroSection = () => {
                             align="center"
                             justify={{ base: "center", md: "center", lg: "center", xl: "flex-start" }}
                         >
-                            <Button
-                                as="a"
-                                href="#accept-bitcoin"
-                                bg="#FFC533"
-                                color="black"
-                                fontSize={{ base: "14px", md: "16px", lg: "16px", xl: "16px" }}
-                                fontWeight="700"
-                                textTransform="uppercase"
-                                width={{ base: "100%", md: "300px", lg: "300px", xl: "326px" }}
-                                height="46px"
-                                borderRadius="5px"
-                                border="2px solid #000"
-                                flexShrink={0}
-                                boxSizing="border-box"
-                                _hover={{
-                                    bg: "#E8B02E"
-                                }}
-                                transition="all 0.2s"
-                            >
-                                LEARN HOW TO ACCEPT BITCOIN
-                            </Button>
+                            {primaryCTA && (
+                                <Button
+                                    as="a"
+                                    href={primaryCTA.target}
+                                    bg="#FFC533"
+                                    color="black"
+                                    fontSize={{ base: "14px", md: "16px", lg: "16px", xl: "16px" }}
+                                    fontWeight="700"
+                                    textTransform="uppercase"
+                                    width={{ base: "100%", md: "300px", lg: "300px", xl: "326px" }}
+                                    height="46px"
+                                    borderRadius="5px"
+                                    border="2px solid #000"
+                                    flexShrink={0}
+                                    boxSizing="border-box"
+                                    _hover={{
+                                        bg: "#E8B02E"
+                                    }}
+                                    transition="all 0.2s"
+                                >
+                                    {primaryCTA.label}
+                                </Button>
+                            )}
 
-                            <Button
-                                onClick={() => window.open("https://www.facebook.com/groups/bitcoinmerchants/", "_blank")}
-                                bg="white"
-                                color="black"
-                                fontSize={{ base: "14px", md: "16px", lg: "16px", xl: "16px" }}
-                                fontWeight="700"
-                                textTransform="uppercase"
-                                width={{ base: "100%", md: "300px", lg: "300px", xl: "326px" }}
-                                height="46px"
-                                borderRadius="5px"
-                                border="2px solid #000"
-                                flexShrink={0}
-                                boxSizing="border-box"
-                                _hover={{
-                                    bg: "#F0F0F0"
-                                }}
-                                transition="all 0.2s"
-                            >
-                                JOIN OUR FACEBOOK COMMUNITY
-                            </Button>
+                            {secondaryCTA && (
+                                <Button
+                                    onClick={() => handleExternalAction(secondaryCTA.target)}
+                                    bg="white"
+                                    color="black"
+                                    fontSize={{ base: "14px", md: "16px", lg: "16px", xl: "16px" }}
+                                    fontWeight="700"
+                                    textTransform="uppercase"
+                                    width={{ base: "100%", md: "300px", lg: "300px", xl: "326px" }}
+                                    height="46px"
+                                    borderRadius="5px"
+                                    border="2px solid #000"
+                                    flexShrink={0}
+                                    boxSizing="border-box"
+                                    _hover={{
+                                        bg: "#F0F0F0"
+                                    }}
+                                    transition="all 0.2s"
+                                >
+                                    {secondaryCTA.label}
+                                </Button>
+                            )}
                         </Flex>
             </Container>
         </Box>
     );
 };
-
-export default HeroSection;
 

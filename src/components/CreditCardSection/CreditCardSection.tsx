@@ -1,9 +1,15 @@
 "use client";
 
-import React from 'react';
-import { Box, Heading, Text, Flex, Image, Container } from '@chakra-ui/react';
+import { Box, Heading, Text, Flex, Container } from '@chakra-ui/react';
+import { content } from '@/content';
+import { renderRichTextContent } from '@/content/utils/render-content';
 
-const CreditCardSection = () => {
+export const CreditCardSection = () => {
+    const creditCardBlock = content.getContentBlockBySlug('credit-card-problem');
+    const creditCardImage = creditCardBlock?.media?.[0] ? content.getMediaAssetById(creditCardBlock.media[0].id) : null;
+
+    if (!creditCardBlock) return null;
+
     return (
         <Box 
             bg="#F5F5F5" 
@@ -30,57 +36,54 @@ const CreditCardSection = () => {
                             mb={6}
                             color="black"
                         >
-                            Credit card providers haven't earned 3%.
+                            {creditCardBlock.title}
                         </Heading>
 
-                        <Text 
-                            fontSize={{ base: "16px", md: "20px" }}
-                            lineHeight="1.4"
-                            mb={5}
-                            color="black"
-                        >
-                            Back when cash was how people paid, there were no 3% credit card fees. Today, credit cards are the preferred way to pay.
-                        </Text>
-
-                        <Text 
-                            fontSize={{ base: "16px", md: "20px" }}
-                            lineHeight="1.4"
-                            color="black"
-                        >
-                            For some small businesses, this can mean paying 50% or more of their profits to card providers. Bitcoin, which is cash but digital, helps them fight back.
-                        </Text>
+                        {creditCardBlock.content.blocks.map((block, index) => {
+                            if (block.type === 'text') {
+                                return (
+                                    <Text 
+                                        key={index}
+                                        fontSize={{ base: "16px", md: "20px" }}
+                                        lineHeight="1.4"
+                                        mb={block === creditCardBlock.content.blocks[creditCardBlock.content.blocks.length - 1] ? 0 : 5}
+                                        color="black"
+                                    >
+                                        {renderRichTextContent({ blocks: [block] })}
+                                    </Text>
+                                );
+                            }
+                            return null;
+                        })}
                     </Box>
 
                     {/* Right Side - Credit Card Image */}
-                    <Box 
-                        flex="1"
-                        display="flex"
-                        justifyContent="center"
-                        alignItems="center"
-                    >
-                        <Box
-                            as="img"
-                            src="/assets/CreditCardImages/CreditCardImage.png"
-                            alt="Broken credit card"
-                            maxW={{ base: "250px", sm: "300px", md: "400px", lg: "450px", xl: "400px" }}
-                            w="100%"
-                            h="auto"
-                            sx={{
-                                imageRendering: 'auto',
-                                WebkitUserSelect: 'none',
-                                userSelect: 'none',
-                            }}
-                        />
-                    </Box>
+                    {creditCardImage && (
+                        <Box 
+                            flex="1"
+                            display="flex"
+                            justifyContent="center"
+                            alignItems="center"
+                        >
+                            <Box
+                                as="img"
+                                src={creditCardImage.path}
+                                alt={creditCardImage.alt}
+                                maxW={{ base: "250px", sm: "300px", md: "400px", lg: "450px", xl: "400px" }}
+                                w="100%"
+                                h="auto"
+                                sx={{
+                                    imageRendering: 'auto',
+                                    WebkitUserSelect: 'none',
+                                    userSelect: 'none',
+                                }}
+                            />
+                        </Box>
+                    )}
                 </Flex>
             </Container>
         </Box>
     );
 };
-
-export default CreditCardSection;
-
-
-
 
 

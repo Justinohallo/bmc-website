@@ -1,9 +1,8 @@
 "use client";
 
-import React from 'react';
 import { Box, Heading, Text, Flex, Container, Link, UnorderedList, ListItem, Image, List } from '@chakra-ui/react';
 
-const AcceptBitcoinSection = () => {
+export const AcceptBitcoinSection = () => {
     return (
         <Box
             id="accept-bitcoin"
@@ -282,6 +281,4 @@ const AcceptBitcoinSection = () => {
         </Box>
     );
 };
-
-export default AcceptBitcoinSection;
 

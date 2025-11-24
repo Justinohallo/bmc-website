@@ -1,10 +1,9 @@
 "use client";
 
-import React from 'react';
 import { Box, Heading, Text, Flex, Container, Link, Image } from '@chakra-ui/react';
 import { ExternalLinkIcon } from '@chakra-ui/icons';
 
-const LocalChampionSection = () => {
+export const LocalChampionSection = () => {
     return (
         <Box 
             bg="white" 
@@ -104,6 +103,4 @@ const LocalChampionSection = () => {
         </Box>
     );
 };
-
-export default LocalChampionSection;
 

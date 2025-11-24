@@ -46,7 +46,6 @@ export function Providers({ children }: { children: React.ReactNode }) {
           @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
           
           html, body {
-          overflow - y: hidden;
           overflow-y: auto;
           scrollbar-width: none; /* For Firefox */
           -ms-overflow-style: none;  /* For IE and Edge */
@@ -79,5 +78,4 @@ export function Providers({ children }: { children: React.ReactNode }) {
     </ChakraProvider>
   );
 }
-
 

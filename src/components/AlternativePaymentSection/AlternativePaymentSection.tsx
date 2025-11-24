@@ -1,9 +1,8 @@
 "use client";
 
-import React from 'react';
 import { Box, Heading, Text, Flex, Container, Link, SimpleGrid, Image } from '@chakra-ui/react';
 
-const AlternativePaymentSection = () => {
+export const AlternativePaymentSection = () => {
     return (
         <Box
             id="alternative-payment"
@@ -69,40 +68,6 @@ const AlternativePaymentSection = () => {
                             IBEX Pay is a web-based bitcoin point-of-sale solution that works on any device with a web browser.
                         </Text>
                     </Box>
-
-
-
-                    {/* Zaprite
-                    <Box>
-                        <Link 
-                            href="https://zaprite.com/"
-                            isExternal
-                            display="flex"
-                            alignItems="center"
-                            mb={4}
-                            height="60px"
-                            _hover={{ opacity: 0.7 }}
-                            transition="opacity 0.2s"
-                        >
-                            <Image 
-                                src="/assets/CompanyImages/zapriteLogo.svg"
-                                alt="Zaprite"
-                                maxW="300px"
-                                h="auto"
-                                width="210px"
-                                loading="eager"
-                                draggable={false}
-                            />
-                        </Link>
-                        <Text 
-                            fontSize={{ base: "16px", md: "20px" }}
-                            lineHeight="1.4"
-                            color="black"
-                            maxW="450px"
-                        >
-                            Zaprite lets you connect a third-party wallet to self-custody any bitcoin you receive.
-                        </Text>
-                    </Box> */}
 
                     {/* BTCPay Server */}
                     <Box>
@@ -194,35 +159,6 @@ const AlternativePaymentSection = () => {
                             Blink is a reliable mobile wallet for merchants, featuring a simple web-based point-of-sale interface for accepting instant bitcoin payments and has an optional stable-dollar account.
                         </Text>
                     </Box>
-
-                    {/* Swiss Bitcoin Pay
-                    <Box>
-                        <Link 
-                            href="https://swiss-bitcoin-pay.ch/"
-                            isExternal
-                            display="flex"
-                            alignItems="center"
-                            mb={4}
-                            height="60px"
-                            _hover={{ opacity: 0.7 }}
-                            transition="opacity 0.2s"
-                        >
-                            <Image 
-                                src="/assets/CompanyImages/swissBitcoinLogo.png"
-                                alt="Swiss Bitcoin Pay"
-                                maxW="200px"
-                                h="auto"
-                            />
-                        </Link>
-                        <Text 
-                            fontSize={{ base: "16px", md: "20px" }}
-                            lineHeight="1.4"
-                            color="black"
-                            maxW="450px"
-                        >
-                            Swiss Bitcoin Pay is an option that many EU merchants have adopted. It allows automatic conversions to fiat currency.
-                        </Text>
-                    </Box> */}
                 </SimpleGrid>
 
                 {/* Bottom Section */}
@@ -288,10 +224,4 @@ const AlternativePaymentSection = () => {
         </Box>
     );
 };
-
-export default AlternativePaymentSection;
-
-
-
-
 

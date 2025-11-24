@@ -1,10 +1,14 @@
 "use client";
 
-import React from 'react';
-import { Box, Heading, Text, Button, Flex, Image, Container, Link } from '@chakra-ui/react';
+import { Box, Heading, Text, Button, Flex, Container, Link } from '@chakra-ui/react';
 import { ExternalLinkIcon } from '@chakra-ui/icons';
 
-const CommunitySection = () => {
+export const CommunitySection = () => {
+    const handleOpenFacebook = () => {
+        if (typeof window !== 'undefined') {
+            window.open("https://www.facebook.com/groups/bitcoinmerchants/", "_blank", "noopener,noreferrer");
+        }
+    };
     return (
         <Box 
             bg="white" 
@@ -54,7 +58,7 @@ const CommunitySection = () => {
                         </Text>
 
                         <Button
-                            onClick={() => window.open("https://www.facebook.com/groups/bitcoinmerchants/", "_blank")}
+                            onClick={handleOpenFacebook}
                             bg="#FFC533"
                             color="black"
                             fontSize="16px"
@@ -149,8 +153,6 @@ const CommunitySection = () => {
         </Box>
     );
 };
-
-export default CommunitySection;
 
 
 

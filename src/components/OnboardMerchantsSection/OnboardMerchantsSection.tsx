@@ -1,11 +1,10 @@
 "use client";
 
-import React from 'react';
-import { Box, Heading, Text, Flex, Container, Link, Image, Icon } from '@chakra-ui/react';
+import { Box, Heading, Text, Flex, Container, Link, Icon } from '@chakra-ui/react';
 import { DownloadIcon } from '@chakra-ui/icons';
 import { FaDiscord } from 'react-icons/fa';
 
-const OnboardMerchantsSection = () => {
+export const OnboardMerchantsSection = () => {
     return (
         <Box 
             id="download-kit"
@@ -179,9 +178,3 @@ const OnboardMerchantsSection = () => {
         </Box>
     );
 };
-
-export default OnboardMerchantsSection;
-
-
-
-

@@ -1,9 +1,12 @@
 import { Providers } from "../providers/ThemeProvider";
 import Script from "next/script";
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
+
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://bitcoinmerchants.org';
+const ogImageUrl = `${siteUrl}/assets/og-image.png`;
 
 export const metadata: Metadata = {
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'https://bitcoinmerchants.org'),
+  metadataBase: new URL(siteUrl),
   title: "Bitcoin Merchant Community",
   description: "The Bitcoin Merchant Community is a growing global community of small businesses helping one another defeat 3% credit card fees by accepting bitcoin",
   icons: {
@@ -12,11 +15,11 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Bitcoin Merchant Community",
     description: "The Bitcoin Merchant Community is a growing global community of small businesses helping one another defeat 3% credit card fees by accepting bitcoin",
-    url: 'https://bitcoinmerchants.org',
+    url: siteUrl,
     siteName: 'Bitcoin Merchant Community',
     images: [
       {
-        url: 'https://www.bitcoinmerchantcommunity.org/assets/og-image.png',
+        url: ogImageUrl,
         width: 1200,
         height: 630,
         alt: 'Bitcoin Merchant Community',
@@ -30,11 +33,16 @@ export const metadata: Metadata = {
     title: "Bitcoin Merchant Community",
     description: "The Bitcoin Merchant Community is a growing global community of small businesses helping one another defeat 3% credit card fees by accepting bitcoin",
     images: {
-      url: 'https://www.bitcoinmerchantcommunity.org/assets/og-image.png',
+      url: ogImageUrl,
       alt: 'Bitcoin Merchant Community',
     },
   },
-  viewport: 'width=device-width, minimum-scale=1.0, maximum-scale=1.0',
+};
+
+export const viewport: Viewport = {
+  width: 'device-width',
+  minimumScale: 1.0,
+  maximumScale: 1.0,
 };
 
 export default function RootLayout({
@@ -45,7 +53,6 @@ export default function RootLayout({
   return (
     <html lang='en' suppressHydrationWarning style={{ scrollBehavior: 'smooth' }}>
       <head>
-        <script defer src="https://cloud.umami.is/script.js" data-website-id="6395c060-67aa-4094-978d-917c9551b8e4"></script>
         <link rel='stylesheet' href='https://use.typekit.net/gaq1ohg.css' />
         <meta name="format-detection" content="telephone=no" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -53,6 +60,11 @@ export default function RootLayout({
       </head>
       <body suppressHydrationWarning>
         <Providers>{children}</Providers>
+        <Script
+          src="https://cloud.umami.is/script.js"
+          data-website-id="6395c060-67aa-4094-978d-917c9551b8e4"
+          strategy="afterInteractive"
+        />
       </body>
     </html>
   );
